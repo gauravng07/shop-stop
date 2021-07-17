@@ -26,7 +26,7 @@ const Home = ({fetchProduct, product}) => {
                                     <button type="button" className="btn btn-sm btn-outline-secondary">A1</button>
                                     <button type="button" className="btn btn-sm btn-outline-secondary">A2</button>
                                 </div>
-                                <small className="text-muted">{product.toString()}</small>
+                                <small className="text-muted">{product}</small>
                             </div>
                         </div>
                     </div>
@@ -36,7 +36,7 @@ const Home = ({fetchProduct, product}) => {
     )
 }
 
-const mapStateToProps = (state) => ({ product: state.product })
+const mapStateToProps = (state) => ({ product: state.products })
 const mapDispatchToProps = { fetchProduct : getProduct  }
 const HomeContainer = connect(mapStateToProps, mapDispatchToProps)(Home)
 

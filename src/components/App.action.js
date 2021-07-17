@@ -1,14 +1,15 @@
-
-import {product} from "./App.reducer";
-
-export const products = product => ({
-    type: 'GET_PRODUCT',
-    product,
-});
-
-export const getProduct = listing => async dispatch => {
-    const url = `https://jsonplaceholder.typicode.com/todos/1`;
-    const response = await fetch(url);
-    const responseBody = await response.json();
-    dispatch(products(responseBody))
-}
+export const getProduct = () => async dispatch => {
+    try {
+        const url = `http://localhost:8080/product/search?page_size=50&page_num=2`;
+        const response = await fetch(url);
+        const responseBody = await response.json();
+        if (responseBody) {
+            dispatch({
+                type: 'GET_PRODUCT',
+                payload: responseBody,
+            });
+        }
+    } catch (e) {
+        return null
+    }
+};

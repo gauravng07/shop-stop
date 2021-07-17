@@ -1,12 +1,19 @@
 import {combineReducers} from "redux";
 
-export const product = (state = [], action) => {
+const initialState = {
+    products: []
+}
+
+const productReducer = (state = initialState, action) => {
     switch (action.type) {
         case 'GET_PRODUCT':
-            return action.product
+            return {
+                ...state,
+                products: [...state.products, action.payload]
+            }
         default:
             return state;
     }
 }
 
-export const rootReducer = combineReducers({product})
+export const rootReducer = combineReducers({productReducer})
